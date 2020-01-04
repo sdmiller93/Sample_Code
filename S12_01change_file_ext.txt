@@ -1,0 +1,22 @@
+# CHANGE FORMAT OF EACH OUTPUT FILE FROM .OUT TO .TSV
+# GET LIST OF FILES / OLD NAMES FROM DIRECTORY
+
+setwd("/Volumes/STOLTZY/data/database/sample_out/")
+
+old_names <- list.files("/Volumes/STOLTZY/data/database/sample_out")
+name_split <- strsplit(old_names, fixed = TRUE, ".")
+
+
+for (i in 1:length(old_names)){
+	data <- read.delim(file = old_names[i], sep = "\t", header = FALSE)
+	name <- paste(name_split[[i]][1], ".tsv", sep="")
+	write.table(data, file = name, sep = "\t", row.names = FALSE, col.names = FALSE, quote = FALSE)
+	
+#	new_name = paste(name_split[[i]][1], "mv.tsv", sep="")
+#	shellcommand = paste("mv", old_names[i], new_name, sep = " ")
+#	system(shellcommand)
+
+}
+
+
+	
